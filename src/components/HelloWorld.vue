@@ -5,20 +5,20 @@ defineProps<{ msg: string }>()
 
 const count = ref(0)
 
-const automsg = ref('not call yet')
+const battery = ref('not call yet')
 
 const onClick = () => {
   count.value++
-  //调用安卓端
-  $autox.callHandler("count", count.value + '', (data: string) => {
-    automsg.value = data
+  //调用autoxjs
+  $autox.callHandler("getDeviceBattery", count.value.toString(), (data: string) => {
+    battery.value = data
   });
 }
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-  <span>autox.js say: {{ automsg }}</span>
+  <span>Current Battery: {{ battery }} % </span>
 
   <div class="card">
     <button type="button" @click="onClick">count is {{ count }}</button>

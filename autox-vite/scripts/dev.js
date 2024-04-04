@@ -80,16 +80,20 @@ chokidar.watch("autox/*.ts").on("all", async (event, filename) => {
     if (filename) {
         console.log(`File ${filename} has been ${event}!`);
         // autox ts build
-        cp.execSync("tsc --project autox/tsconfig.development.json", {
-            stdio: "inherit"
-        });
-        console.log('已连接设备', clients.size);
-        if (clients.size) {
-            console.log(clients.keys());
-            for (const clientId of clients.keys()) {
-                await stopAllScript(clientId);
-                await runProject(clientId);
+        try {
+            cp.execSync("tsc --project autox/tsconfig.development.json", {
+                stdio: "inherit"
+            });
+            console.log('已连接设备', clients.size);
+            if (clients.size) {
+                console.log(clients.keys());
+                for (const clientId of clients.keys()) {
+                    await stopAllScript(clientId);
+                    await runProject(clientId);
+                }
             }
+        } catch (error) {
+            console.log('编译错误', error);
         }
     }
 });
