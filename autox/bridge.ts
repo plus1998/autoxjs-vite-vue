@@ -4,7 +4,7 @@ module.exports = [
         callback: (data: string, cb: (data: string) => void) => {
             console.log("received web count :" + data);
             toast(data);
-            cb(device.getBattery().toFixed(2));
+            cb(device.getBattery().toFixed(0));
         }
     }
 ]
