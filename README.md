@@ -1,4 +1,4 @@
-# AutoX.js + Vite + Vue3 + Typesctipt
+# AutoX.js + Vite + Vue3 + Typescript
 
 这是一个AutoX.js工程化项目，支持开发环境热更新
 
