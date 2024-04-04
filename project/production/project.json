@@ -1,0 +1,7 @@
+{
+    "name": "autoxjs-vite-vue",
+    "packageName": "com.happyplus.avv",
+    "main": "main.js",
+    "versionName": "0.0.1",
+    "ignore": []
+  }

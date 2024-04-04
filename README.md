@@ -1,9 +1,24 @@
-# Vue 3 + TypeScript + Vite
+# AutoX.js + Vite + Vue3 + Typesctipt
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+这是一个AutoX.js工程化项目，支持开发环境热更新
 
-## Recommended Setup
+# 使用指南
 
-- [VS Code](https://code.visualstudio.com/) + [Vue - Official](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (previously Volar) and disable Vetur
+1. ```npm install```
+2. 修改项目信息 (project/production/project.json)
 
-- Use [vue-tsc](https://github.com/vuejs/language-tools/tree/master/packages/tsc) for performing the same type checking from the command line, or for generating d.ts files for SFCs.
+### 开发环境
+
+1. ```npm run dev```
+2. Autox.js输入电脑ip连接电脑 - 项目仅运行
+3. 修改 autox/bridge.ts - 体验热更新
+
+### 生产构建
+1. ```npm run build```
+2. Autox.js输入电脑ip连接电脑 - 项目自动保存到手机
+3. 项目路径为 autox/build/production
+
+
+# 参考项目
+
+* [Auto.js-VSCode-Extension](https://github.com/kkevsekk1/Auto.js-VSCode-Extension)

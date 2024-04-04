@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build:autox": "node autox/build.js",
-    "build": "npm run build:autox && vue-tsc && vite build",
+    "dev": "concurrently \"node autox-vite/scripts/dev.js\" \"vite\"",
+    "build:autox": "node autox-vite/scripts/build.js",
+    "build": "vite build && npm run build:autox && vue-tsc",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,8 +15,14 @@
   "devDependencies": {
     "@types/node": "^20.12.3",
     "@vitejs/plugin-vue": "^5.0.4",
+    "archiver": "^7.0.1",
+    "chokidar": "^3.6.0",
+    "concurrently": "^8.2.2",
+    "stream-buffers": "^3.0.2",
     "typescript": "^5.2.2",
+    "uuid": "^9.0.1",
     "vite": "^5.2.0",
-    "vue-tsc": "^2.0.6"
+    "vue-tsc": "^2.0.6",
+    "ws": "^8.16.0"
   }
 }
