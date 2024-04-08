@@ -60,7 +60,7 @@ if (!fs.existsSync("autox/build/production")) {
 }
 
 // autox ts build
-cp.execSync("tsc --project autox/tsconfig.production.json", {
+cp.execSync("tsc --project autox/tsconfig.json --outDir ./build/production/modules", {
     stdio: "inherit"
 });
 

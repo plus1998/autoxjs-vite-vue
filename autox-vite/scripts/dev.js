@@ -81,7 +81,7 @@ chokidar.watch("autox/*.ts").on("all", async (event, filename) => {
         console.log(`File ${filename} has been ${event}!`);
         // autox ts build
         try {
-            cp.execSync("tsc --project autox/tsconfig.development.json", {
+            cp.execSync("tsc --project autox/tsconfig.json --outDir ./build/development/modules", {
                 stdio: "inherit"
             });
             console.log('已连接设备', clients.size);
