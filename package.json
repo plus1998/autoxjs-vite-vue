@@ -10,16 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "vant": "^4.8.10",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "^20.12.3",
+    "@vant/auto-import-resolver": "^1.1.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "archiver": "^7.0.1",
     "chokidar": "^3.6.0",
     "concurrently": "^8.2.2",
     "stream-buffers": "^3.0.2",
     "typescript": "^5.2.2",
+    "unplugin-auto-import": "^0.17.5",
+    "unplugin-vue-components": "^0.26.0",
     "uuid": "^9.0.1",
     "vite": "^5.2.0",
     "vue-tsc": "^2.0.6",
