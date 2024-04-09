@@ -1,24 +1,20 @@
-module.exports = [
-    {
-        name: 'getDeviceBrand',
-        callback: (params: string, cb: (data: string) => void) => {
-            console.log('getDeviceBrand', params);
-            cb(device.brand);
+import DeviceApi from './service/device';
+
+const modules = [
+    // 导入模块放到这里
+    DeviceApi
+] as { [key: string]: Function }[]
+
+const apis = [];
+for (const module of modules) {
+    apis.push(...Object.keys(module).map((key) => {
+        return {
+            name: key,
+            callback: (params: string, cb: (data: string) => void) => {
+                cb(module[key](params));
+            }
         }
-    },
-    {
-        name: 'getDeviceModel',
-        callback: (params: string, cb: (data: string) => void) => {
-            console.log('getDeviceModel', params);
-            cb(device.model);
-        }
-    },
-    {
-        name: 'getDeviceBattery',
-        callback: (params: string, cb: (data: string) => void) => {
-            console.log('getDeviceBattery', params);
-            let battery = device.getBattery().toFixed(0);
-            cb(battery);
-        }
-    }
-]
+    }))
+}
+
+module.exports = apis

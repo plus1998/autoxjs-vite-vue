@@ -9,13 +9,13 @@ const deviceInfo = reactive({
 const battery = ref('');
 
 // 调用autox.js
-$autox.callHandler('getDeviceBrand', '', (data) => {
+$autox.callHandler('GetDeviceBrand', '', (data) => {
     deviceInfo.brand = data;
 })
-$autox.callHandler('getDeviceModel', '', (data) => {
+$autox.callHandler('GetDeviceModel', '', (data) => {
     deviceInfo.model = data;
 })
-$autox.callHandler('getDeviceBattery', '', (data) => {
+$autox.callHandler('GetDeviceBattery', '', (data) => {
     battery.value = data;
 })
 </script>
