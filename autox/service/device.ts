@@ -11,5 +11,10 @@ export default {
         console.log('getDeviceBattery', params);
         let battery = device.getBattery().toFixed(0);
         return battery;
+    },
+    DeviceVibrate(params: string) {
+        console.log('DeviceVibrate', params);
+        device.vibrate(1000);
+        return 'autox.js say: ok';
     }
 }

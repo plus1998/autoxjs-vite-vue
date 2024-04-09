@@ -26,10 +26,14 @@ const screenHeight = document.documentElement.clientHeight;
 const offset = ref({ y: screenHeight - 150, x: -1 });
 
 const onClickBubble = () => {
-  showNotify({
-    type: 'primary',
-    message: '点击了气泡',
-    duration: 1000,
+  // autox 震动
+  $autox.callHandler('DeviceVibrate', '', (data: string) => {
+    // 接收参数
+    showNotify({
+      type: 'primary',
+      message: '设备震动 ' + data,
+      duration: 1000,
+    })
   })
 };
 
@@ -39,8 +43,9 @@ const onClickBubble = () => {
   <div>
     <RouterView />
     <van-tabbar v-model="active" route>
-      <van-tabbar-item v-for="tab in tabs" :name="tab.name" :key="tab.name" :icon="tab.icon" :to="'/' + tab.name">{{ tab.title
-        }}</van-tabbar-item>
+      <van-tabbar-item v-for="tab in tabs" :name="tab.name" :key="tab.name" :icon="tab.icon" :to="'/' + tab.name">{{
+      tab.title
+    }}</van-tabbar-item>
     </van-tabbar>
     <van-floating-bubble v-model:offset="offset" icon="chat" @click="onClickBubble" />
   </div>
