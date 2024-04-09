@@ -76,7 +76,9 @@ for (const file of files) {
 }
 
 // 监听autox文件变动
-chokidar.watch("autox/*.ts").on("all", async (event, filename) => {
+chokidar.watch("autox/**/*.ts", {
+    ignored: /types/,
+}).on("all", async (event, filename) => {
     if (filename) {
         console.log(`File ${filename} has been ${event}!`);
         // autox ts build
