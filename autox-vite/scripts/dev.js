@@ -1,12 +1,8 @@
 import cp from "child_process";
 import fs from "fs";
-import path from "path";
-import crypto from 'crypto';
 
 // 项目文件
 import chokidar from "chokidar";
-import archiver from 'archiver';
-import { WritableStreamBuffer } from 'stream-buffers';
 import { FileObserver } from '../modules/diff.cjs';
 
 // 连接设备
@@ -18,6 +14,8 @@ import {
     stopAllScript
 } from '../modules/ws.cjs';
 
+import { copyDir, packProject } from "../modules/util.cjs";
+
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
 const projectName = packageJson.name;
 
@@ -25,26 +23,8 @@ const folder = '../autox/build/development';
 const fileObserver = new FileObserver(folder);
 
 // project
-const packProject = async () => {
-    const changedFiles = await fileObserver.walk();
-    console.log(changedFiles);
-    const zip = archiver('zip');
-    const streamBuffer = new WritableStreamBuffer();
-    zip.pipe(streamBuffer);
-    changedFiles.forEach(relativePath => {
-        zip.append(fs.createReadStream(path.join(fileObserver.dir, relativePath)), { name: relativePath });
-    });
-    await zip.finalize();
-    const buffer = streamBuffer.getContents() || Buffer.alloc(0);
-    const md5 = crypto.createHash('md5').update(buffer).digest('hex');
-    return {
-        buffer,
-        md5
-    };
-}
-
 const runProject = async (clientId) => {
-    const { buffer, md5 } = await packProject();
+    const { buffer, md5 } = await packProject(fileObserver);
     saveOrRunProject(clientId, projectName, md5, buffer, 'run_project');
 }
 
@@ -67,13 +47,7 @@ if (!fs.existsSync("autox/build/development")) {
 const sourceDir = 'project/development';
 const targetDir = 'autox/build/development';
 
-const files = fs.readdirSync(sourceDir);
-for (const file of files) {
-    const sourceFile = path.join(sourceDir, file);
-    const targetFile = path.join(targetDir, file);
-    fs.copyFileSync(sourceFile, targetFile);
-    console.log('File copied:', file);
-}
+copyDir(sourceDir, targetDir)
 
 // 监听autox文件变动
 chokidar.watch("autox/**/*.ts", {
