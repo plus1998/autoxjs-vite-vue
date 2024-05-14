@@ -45,9 +45,11 @@ if (!fs.existsSync("autox/build/development")) {
 
 // 复制project文件
 const sourceDir = 'project/development';
+const resourcesDir = 'project/resources';
 const targetDir = 'autox/build/development';
 
 copyDir(sourceDir, targetDir)
+copyDir(resourcesDir, targetDir)
 
 // 监听autox文件变动
 chokidar.watch("autox/**/*.ts", {

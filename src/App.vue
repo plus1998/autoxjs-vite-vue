@@ -27,11 +27,11 @@ const offset = ref({ y: screenHeight - 150, x: -1 });
 
 const onClickBubble = () => {
   // autox 震动
-  $autox.callHandler('DeviceVibrate', '', (data: string) => {
+  $autox.callHandler('ExecScript', 'test', (data: string) => {
     // 接收参数
     showNotify({
       type: 'primary',
-      message: '设备震动 ' + data,
+      message: '测试 ' + data,
       duration: 1000,
     })
   })

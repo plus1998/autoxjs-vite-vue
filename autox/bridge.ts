@@ -1,8 +1,10 @@
 import DeviceApi from './service/device';
+import ScriptApi from './service/script';
 
 const modules = [
     // 导入模块放到这里
-    DeviceApi
+    DeviceApi,
+    ScriptApi
 ] as { [key: string]: Function }[]
 
 const apis = [];

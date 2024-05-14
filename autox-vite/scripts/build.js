@@ -44,9 +44,11 @@ cp.execSync("tsc --project autox/tsconfig.json --outDir autox/build/production/m
 
 // 复制project文件
 const sourceDir = 'project/production';
+const resourcesDir = 'project/resources';
 const targetDir = 'autox/build/production';
 
 copyDir(sourceDir, targetDir)
+copyDir(resourcesDir, targetDir)
 
 console.log('打包完成, 连接设备即可自动保存项目。');
 console.log('请连接设备，按 Ctrl + C 退出。');

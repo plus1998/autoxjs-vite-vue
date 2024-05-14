@@ -39,14 +39,20 @@ const packProject = async (fileObserver) => {
 }
 
 const copyDir = (sourceDir, targetDir) => {
+    if (!fs.existsSync(targetDir)) {
+        fs.mkdirSync(targetDir, { recursive: true });
+    }
     const files = fs.readdirSync(sourceDir);
     for (const file of files) {
+        if (fs.statSync(path.join(sourceDir, file)).isDirectory()) {
+            copyDir(path.join(sourceDir, file), path.join(targetDir, file));
+            continue;
+        }
         const sourceFile = path.join(sourceDir, file);
         const targetFile = path.join(targetDir, file);
         fs.copyFileSync(sourceFile, targetFile);
         console.log('File copied:', file);
     }
-
 }
 
 module.exports = {
