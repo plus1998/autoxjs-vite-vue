@@ -44,3 +44,8 @@ $autox.callHandler("getDeviceBattery", count.value.toString(), (data: string) =>
 # 参考项目
 
 * [Auto.js-VSCode-Extension](https://github.com/kkevsekk1/Auto.js-VSCode-Extension)
+
+
+# License
+
+See the LICENSE file for more details.
