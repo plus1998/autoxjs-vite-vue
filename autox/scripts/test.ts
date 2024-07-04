@@ -1,6 +1,8 @@
+// axp-logger文档 http://axp-logger-docs.auair.cn
+
 let logger = require('./logger/index.min.js')
 // 授权码
-logger.setLicenseKey('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWQiOiI2NjQxYjM5NjA3NWU5MDcwYWExMWQ3NDYiLCJwaWQiOiI2NjQxYjE4MTA3NWU5MDcwYWExMWQ3MjciLCJwcGlkIjoiNjY0MWIxYjAwNzVlOTA3MGFhMTFkNzNiIiwidSI6Im9yZy5hdXRvanMuYXV0b3hqcy52NiIsImlhdCI6MTcxNTU4MTg0NiwiZXhwIjoxNzQ3MjkwNjQ2fQ.RGZkH7EZbDeq-ahOo_-hbvF46kEK-1g4DNLW_ZoWWmk');
+logger.setLicenseKey('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsaWQiOiI2Njg2MjI0YjA2MTVlZmI3NDdkYWY1OTAiLCJwaWQiOiI2Njg2MjFlMjA2MTVlZmI3NDdkYWY1NzgiLCJwcGlkIjoiNjY4NjIxZmYwNjE1ZWZiNzQ3ZGFmNTg5IiwidSI6Im9yZy5hdXRvanMuYXV0b3hqcy52NiIsImlhdCI6MTcyMDA2NjYzNSwiZXhwIjoxNzUxNzc1NDM1fQ.V_fyw_hIrh5RBTBy4HeH8pQ36xppYfN3JI5AZ796GcM');
 
 logger.onerror((error: any) => {
     alert('加载日志模块错误' + error.message)
