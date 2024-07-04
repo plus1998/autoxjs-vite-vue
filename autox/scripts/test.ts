@@ -1,4 +1,4 @@
-// axp-logger文档 http://axp-logger-docs.auair.cn
+// axp-logger文档 http://docs.axp.auair.cn
 
 let logger = require('./logger/index.min.js')
 // 授权码
