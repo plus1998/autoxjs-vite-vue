@@ -5,13 +5,15 @@ const { EventEmitter } = require('events');
 const eventEmitter = new EventEmitter();
 
 let wss;
+let host;
 const clients = new Map();
 
 const init = () => {
     // 创建 WebSocket 服务器
     wss = new WebSocketServer({ port: 9317 });
     // 监听连接事件
-    wss.on('connection', (ws) => {
+    wss.on('connection', (ws, req) => {
+        host = req.headers.host.split(':')[0];
         ws.on('message', (msg) => {
             const message_id = v4();
             const { type, data } = JSON.parse(msg.toString());
@@ -81,10 +83,15 @@ const stopAllScript = (clientId) => {
     client.send(JSON.stringify(data))
 }
 
+const getHost = () => {
+    return host;
+}
+
 module.exports = {
     clients,
     eventEmitter,
     init,
     saveOrRunProject,
     stopAllScript,
+    getHost
 }

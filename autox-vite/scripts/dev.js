@@ -11,8 +11,10 @@ import {
     eventEmitter,
     init,
     saveOrRunProject,
-    stopAllScript
+    stopAllScript,
+    getHost
 } from '../modules/ws.cjs';
+import path from "path";
 
 import { copyDir, packProject } from "../modules/util.cjs";
 
@@ -24,6 +26,11 @@ const fileObserver = new FileObserver(folder);
 
 // project
 const runProject = async (clientId) => {
+    // 更新js中的host
+    const mainJSPath = path.join(targetDir, 'main.js');
+    console.log('更新主机host', getHost());
+    fs.writeFileSync(mainJSPath, fs.readFileSync(mainJSPath).toString('utf-8').replace('localhost', getHost()), 'utf-8');
+    // 打包项目
     const { buffer, md5 } = await packProject(fileObserver);
     saveOrRunProject(clientId, projectName, md5, buffer, 'run_project');
 }
@@ -64,7 +71,7 @@ chokidar.watch("autox/**/*.ts", {
             });
             console.log('已连接设备', clients.size);
             if (clients.size) {
-                console.log(clients.keys());
+                // 全部发送项目
                 for (const clientId of clients.keys()) {
                     await stopAllScript(clientId);
                     await runProject(clientId);

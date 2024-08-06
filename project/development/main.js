@@ -6,7 +6,7 @@ ui.layout(`
     </vertical>`)
 
 // 加载页面
-ui.web.loadUrl("http://192.168.20.225:5173")
+ui.web.loadUrl("http://localhost:5173")
 // 加载函数
 const LIST = require("./modules/bridge.js")
 LIST.forEach((handler) => {
